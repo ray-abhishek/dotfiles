@@ -1,6 +1,4 @@
-# My ZSH setup.
-
-## Why
+# Supercharged ZSH setup
 
 The default terminal experience is terrible. This fixes that with minimal configuration and maximum utility. Works on macOS and Linux.
 

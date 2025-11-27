@@ -1,90 +1,52 @@
-# 🚀 My Dotfiles
+# My ZSH setup.
 
-A supercharged ZSH configuration that makes your terminal 100x better. One-line installation for macOS and Linux.
+## Why
 
-![Starship Prompt](https://img.shields.io/badge/prompt-starship-DD0B78?style=flat-square)
-![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20Linux-blue?style=flat-square)
-![Shell](https://img.shields.io/badge/shell-zsh-green?style=flat-square)
+The default terminal experience is terrible. This fixes that with minimal configuration and maximum utility. Works on macOS and Linux.
 
-## ✨ Features
+## What you get
 
-- 🎨 **Beautiful Starship Prompt** - Fast, informative, and customizable
-- 🔍 **fzf Integration** - Fuzzy find everything (history, files, directories)
-- 🚀 **Smart Directory Jumping** - zoxide learns your most-used directories
-- 💡 **Intelligent Autosuggestions** - Fish-like suggestions based on history
-- 🌈 **Syntax Highlighting** - Real-time command validation
-- 📚 **Extended History** - 50k commands with timestamps
-- ⚡ **Smart Completion** - Case-insensitive with menu selection
-- 🎯 **Productivity Aliases** - Git shortcuts, navigation, and more
-- 🛠️ **Utility Functions** - mkcd, extract, backup, and more
+- Starship prompt that actually shows useful information
+- fzf for fuzzy finding everything
+- zoxide because `cd ../../..` is ridiculous
+- Autosuggestions from history
+- Syntax highlighting so you know when you've typo'd
+- 50k command history with timestamps
+- Case-insensitive tab completion
+- Git aliases that save hundreds of keystrokes
+- Utility functions for common tasks
 
-## 📦 What Gets Installed
+## Installation
 
-### Tools
-- [Starship](https://starship.rs/) - Cross-shell prompt
-- [fzf](https://github.com/junegunn/fzf) - Fuzzy finder
-- [zoxide](https://github.com/ajeetdsouza/zoxide) - Smarter cd command
-- [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) - Fish-like autosuggestions
-- [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) - Command syntax highlighting
-
-### Configuration Files
-- `.zshrc` - Main ZSH configuration
-- `.config/starship.toml` - Starship prompt theme
-
-## 🔧 Installation
-
-### One-line install (from GitHub)
 ```bash
 curl -fsSL https://raw.githubusercontent.com/YOUR_USERNAME/dotfiles/main/setup-zsh.sh | bash
 ```
 
-### Manual install
+Restart your terminal.
+
+## Usage
+
+**Search everything with fzf:**
+- `Ctrl+R` - command history
+- `Ctrl+T` - files
+- `Alt+C` - directories
+
+**Jump around with zoxide:**
 ```bash
-# Clone the repo
-git clone https://github.com/YOUR_USERNAME/dotfiles.git ~/dotfiles
-cd ~/dotfiles
-
-# Run the setup script
-bash setup-zsh.sh
-
-# Restart your terminal or reload
-source ~/.zshrc
+z documents        # jump to ~/Documents
+z proj web         # partial matching works
 ```
 
-## 🎯 Quick Start
-
-After installation, try these features:
-
-### Fuzzy Search
-- `Ctrl+R` - Search command history
-- `Ctrl+T` - Search files
-- `Alt+C` - Search directories
-
-### Smart Navigation
+**Git shortcuts:**
 ```bash
-z documents        # Jump to ~/Documents (after visiting once)
-z proj web         # Jump to ~/projects/website
-..                 # cd ..
-...                # cd ../..
+gs                 # status
+ga .               # add
+gc "message"       # commit
+gp                 # push
+glog               # pretty log
 ```
 
-### Git Shortcuts
-```bash
-gs                 # git status
-ga .               # git add .
-gc "message"       # git commit -m "message"
-gp                 # git push
-glog               # git log --oneline --graph --all
-```
-
-### Utility Functions
-```bash
-mkcd newproject    # Create directory and cd into it
-extract file.tar.gz # Extract any archive format
-backup config.json  # Create timestamped backup
-```
-
-## 📝 Aliases Cheatsheet
+## Aliases
 
 ### Git
 | Alias | Command |
@@ -123,126 +85,32 @@ backup config.json  # Create timestamped backup
 | `reload` | `source ~/.zshrc` |
 | `zshconfig` | Edit `.zshrc` |
 
-## 🛠️ Customization
+## Customization
 
-### Add Your Own Aliases
+Edit `~/.zshrc` directly or use `zshconfig` alias. Add your own aliases in the ALIASES section.
+
+For Starship prompt customization, edit `~/.config/starship.toml`. See [starship.rs/config](https://starship.rs/config/) for options.
+
+## Notes
+
+- History is saved with timestamps. Commands starting with space are ignored.
+- Tab completion is case-insensitive.
+- Press `→` to accept autosuggestions.
+- Your old `.zshrc` is backed up automatically during installation.
+
+## Troubleshooting
+
+If Starship isn't found after install, ensure Homebrew is in your PATH:
 ```bash
-# Edit your .zshrc
-zshconfig
-
-# Add aliases in the ALIASES section
-alias myalias="command here"
-
-# Reload
-reload
-```
-
-### Customize Starship Prompt
-```bash
-# Edit starship config
-nano ~/.config/starship.toml
-
-# See available modules: https://starship.rs/config/
-```
-
-### Add Custom Functions
-Edit `~/.zshrc` and add functions in the CUSTOM FUNCTIONS section:
-```bash
-myfunction() {
-  echo "Hello $1"
-}
-```
-
-## 🔄 Updating
-
-To update the configuration on an existing machine:
-```bash
-cd ~/dotfiles
-git pull
-bash setup-zsh.sh
-```
-
-Your existing `.zshrc` will be backed up automatically.
-
-## 🗑️ Uninstall
-
-To restore your original configuration:
-```bash
-# Find your backup
-ls -la ~ | grep zshrc.backup
-
-# Restore it
-cp ~/.zshrc.backup-TIMESTAMP ~/.zshrc
-
-# Reload
-source ~/.zshrc
-```
-
-## 💡 Tips & Tricks
-
-### History Search
-- Type part of a command and press `↑` to search history
-- `Ctrl+R` for interactive fuzzy search
-- Commands starting with space won't be saved to history
-
-### Autosuggestions
-- Type a command to see suggestions in gray
-- Press `→` to accept the suggestion
-- Press `Alt+→` to accept one word at a time
-
-### Tab Completion
-- Press `Tab` twice to see completion menu
-- Use arrow keys to navigate
-- Case-insensitive by default
-
-## 📋 Requirements
-
-- **macOS**: macOS 10.15 or later
-- **Linux**: Ubuntu 18.04+, Debian 10+, CentOS 7+, or similar
-- **Shell**: ZSH (will be configured as default shell)
-- **Internet**: For downloading dependencies
-
-## 🐛 Troubleshooting
-
-### Command not found: starship
-```bash
-# Ensure Homebrew is in PATH (macOS)
 eval "$(/opt/homebrew/bin/brew shellenv)"
 ```
 
-### Slow prompt
-```bash
-# Increase starship timeout
-# Edit ~/.config/starship.toml
-scan_timeout = 50
-command_timeout = 1000
-```
+Slow prompt? Edit `~/.config/starship.toml` and increase timeouts.
 
-### Plugins not loading
-```bash
-# Reinstall plugins
-rm -rf ~/.zsh
-bash ~/dotfiles/setup-zsh.sh
-```
-
-## 🤝 Contributing
-
-Feel free to fork this repo and customize it for your needs!
-
-## 📄 License
-
-MIT License - feel free to use and modify!
-
-## 🙏 Credits
+## Dependencies
 
 - [Starship](https://starship.rs/)
 - [fzf](https://github.com/junegunn/fzf)
 - [zoxide](https://github.com/ajeetdsouza/zoxide)
 - [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 - [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
-
----
-
-**Enjoy your supercharged terminal! 🚀**
-
-If you found this helpful, give it a ⭐️
